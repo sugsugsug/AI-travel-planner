@@ -11,9 +11,6 @@ import datetime
 import requests
 
 
-
-
-
 app = Flask(__name__)
 
 @app.route('/')
@@ -44,9 +41,15 @@ def hello_world(query="hotel in boston from 2024-06-04 to 2024-06-20"):
                         hotel_result = response_str
                         print(request.url)
                         print(i)
+                        print(response_str)
+                        file = open('read.txt', 'w')
+                        file.write(response_str)
+                        file.close()
                 except:
                     continue
         print('hotel done')
+
+        '''
         #Flight
         driver.get(f'https://www.google.com/travel/flights?tfs=CBwQARocagwIAhIIL20vMGhzcWZyDAgDEggvbS8wMWN4XxocagwIAxIIL20vMDFjeF9yDAgCEggvbS8waHNxZkABSAFwAYIBCwj___________8BmAEB&tfu=KgIIAw')
         start_date = datetime.datetime.strptime(start_day, "%Y-%m-%d")
@@ -97,6 +100,7 @@ def hello_world(query="hotel in boston from 2024-06-04 to 2024-06-20"):
         print('weather done')
 
         result = [hotel_result, flight_result, todo_result, weather_result]
+        '''
     finally:
         driver.quit()
     return 'Hello, World!'
